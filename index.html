@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Lari Cruz, esteticista</title>
+  <meta name="description" content="Protocolos de estética facial e corporal com técnica, higiene e atenção à sua pele." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#F3EEE6',
+            linen: '#EAE3D6',
+            champagne: '#C9A96E',
+            graphite: '#1C1C1E',
+            ink: '#0E0E0F'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="font-sans">
+
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- ================= HEADER ================= -->
+  <header id="navbar" class="fixed top-0 inset-x-0 z-50 transition-all duration-500" style="padding-top: env(safe-area-inset-top, 0px)">
+    <nav class="mx-auto max-w-7xl px-5 md:px-10 h-20 flex items-center justify-between">
+      <a href="#top" class="font-serif text-2xl tracking-[0.2em] uppercase">Lari Cruz <span class="gold-text italic normal-case tracking-normal">Estetica</span></a>
+
+      <ul class="hidden md:flex items-center gap-10 text-[13px] tracking-[0.18em] uppercase">
+        <li><a class="nav-link" href="#filosofia">Filosofia</a></li>
+        <li><a class="nav-link" href="#protocolos">Protocolos</a></li>
+        <li><a class="nav-link" href="#produtos">Home Care</a></li>
+        <li><a class="nav-link" href="#resultados">Resultados</a></li>
+        <li><a class="nav-link" href="#contato">Contato</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <a href="#" data-wa="Olá! Gostaria de agendar uma consulta." class="wa-link btn-primary hidden sm:inline-flex text-[12px] tracking-[0.18em] uppercase rounded-full px-6 py-3">Agendar consulta</a>
+        <button id="menuBtn" aria-label="Abrir menu" class="hamburger md:hidden relative w-11 h-11 rounded-full glass grid place-items-center" aria-expanded="false">
+          <span class="absolute w-5 h-[1.5px] bg-graphite -translate-y-1"></span>
+          <span class="absolute w-5 h-[1.5px] bg-graphite translate-y-1"></span>
+        </button>
+      </div>
+    </nav>
+
+    <div id="mobileMenu" class="mobile-menu md:hidden mx-4 mt-1 rounded-3xl glass p-6">
+      <ul class="flex flex-col gap-5 font-serif text-3xl">
+        <li><a href="#filosofia" class="mobile-link">Filosofia</a></li>
+        <li><a href="#protocolos" class="mobile-link">Protocolos</a></li>
+        <li><a href="#produtos" class="mobile-link">Home Care</a></li>
+        <li><a href="#resultados" class="mobile-link">Resultados</a></li>
+        <li><a href="#contato" class="mobile-link">Contato</a></li>
+      </ul>
+      <a href="#" data-wa="Olá! Gostaria de agendar uma consulta." class="wa-link btn-primary mt-6 flex justify-center rounded-full py-4 text-[12px] tracking-[0.18em] uppercase">Agendar pelo WhatsApp</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="relative min-h-[100svh] pt-28 pb-16 md:pt-0 md:pb-0 flex items-center overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-[60vw] h-[60vw] rounded-full brushed opacity-30 blur-3xl" data-speed="0.15"></div>
+
+      <div class="relative mx-auto max-w-7xl w-full px-5 md:px-10 grid md:grid-cols-12 gap-10 items-center">
+        <div class="md:col-span-6 z-10">
+          <p class="reveal text-[11px] tracking-[0.35em] uppercase text-graphite/60 mb-6 flex items-center gap-3">
+            <span class="w-10 h-px bg-champagne"></span> Estética avançada · Desde 2013
+          </p>
+          <h1 class="reveal d1 font-serif text-[44px] leading-[1.02] sm:text-6xl lg:text-[84px] font-medium tracking-tight">
+            Beleza natural,<br />
+            <em class="gold-text font-normal">cuidado com técnica</em><br />
+            em profundidade.
+          </h1>
+          <p class="reveal d2 mt-8 max-w-md text-[15px] leading-relaxed text-graphite/70">
+            Protocolos personalizados, executados com técnica precisa e higiene rigorosa. Cada pele tem uma história; a nossa função é escutá-la.
+          </p>
+          <div class="reveal d3 mt-10 flex flex-wrap items-center gap-4">
+            <a href="#contato" class="btn-primary rounded-full px-8 py-4 text-[12px] tracking-[0.18em] uppercase">Agendar avaliação</a>
+            <a href="#protocolos" class="btn-ghost rounded-full px-8 py-4 text-[12px] tracking-[0.18em] uppercase">Ver protocolos</a>
+          </div>
+        </div>
+
+        <div class="md:col-span-6 relative scene h-[460px] md:h-[620px] flex flex-col items-center justify-center" id="heroScene">
+          <div class="glow-halo"></div>
+
+          <div class="tool-stage" id="toolStage">
+            <div class="tool-ring" id="toolRing">
+
+              <!-- Cureta -->
+              <div class="tool-card">
+                <svg viewBox="0 0 160 200" fill="none" aria-hidden="true">
+                  <g transform="rotate(-30 80 100)">
+                    <rect x="73" y="66" width="14" height="112" rx="7" fill="#C9A96E"/>
+                    <path d="M80 66 V 52" stroke="#1C1C1E" stroke-width="5" stroke-linecap="round"/>
+                    <ellipse cx="80" cy="34" rx="16" ry="22" stroke="#1C1C1E" stroke-width="5"/>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Luva -->
+              <div class="tool-card">
+                <svg viewBox="0 0 160 200" fill="none" aria-hidden="true">
+                  <rect x="52" y="48" width="14" height="66" rx="7" fill="#E8EEF0" stroke="#1C1C1E" stroke-width="2"/>
+                  <rect x="67" y="30" width="14" height="82" rx="7" fill="#E8EEF0" stroke="#1C1C1E" stroke-width="2"/>
+                  <rect x="82" y="34" width="14" height="78" rx="7" fill="#E8EEF0" stroke="#1C1C1E" stroke-width="2"/>
+                  <rect x="97" y="50" width="13" height="62" rx="6.5" fill="#E8EEF0" stroke="#1C1C1E" stroke-width="2"/>
+                  <rect x="30" y="98" width="14" height="52" rx="7" fill="#E8EEF0" stroke="#1C1C1E" stroke-width="2" transform="rotate(35 37 124)"/>
+                  <rect x="46" y="98" width="68" height="70" rx="22" fill="#E8EEF0" stroke="#1C1C1E" stroke-width="2"/>
+                  <rect x="44" y="158" width="72" height="14" rx="4" fill="#1C1C1E"/>
+                </svg>
+              </div>
+
+              <!-- Pinça -->
+              <div class="tool-card">
+                <svg viewBox="0 0 160 200" fill="none" aria-hidden="true">
+                  <path d="M74 36 L 56 172" stroke="#1C1C1E" stroke-width="5" stroke-linecap="round"/>
+                  <path d="M86 36 L 104 172" stroke="#1C1C1E" stroke-width="5" stroke-linecap="round"/>
+                  <circle cx="80" cy="30" r="8" fill="#C9A96E"/>
+                  <path d="M54 172 L 58 178" stroke="#C9A96E" stroke-width="3" stroke-linecap="round"/>
+                  <path d="M106 172 L 102 178" stroke="#C9A96E" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+              </div>
+
+              <!-- Espátula -->
+              <div class="tool-card">
+                <svg viewBox="0 0 160 200" fill="none" aria-hidden="true">
+                  <rect x="73" y="92" width="14" height="96" rx="7" fill="#1C1C1E"/>
+                  <path d="M80 22 C 56 22, 52 64, 80 94 C 108 64, 104 22, 80 22 Z" fill="#E6CFA0" stroke="#1C1C1E" stroke-width="2"/>
+                </svg>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="tool-info mt-6 h-[110px] text-center px-6">
+            <div class="tool-label on" data-label>
+              <p class="font-serif text-3xl">Cureta de extração</p>
+              <p class="mt-2 text-[14px] text-graphite/65 max-w-xs mx-auto">Extração delicada, com pressão controlada e higiene em cada etapa.</p>
+            </div>
+            <div class="tool-label" data-label>
+              <p class="font-serif text-3xl">Luvas de procedimento</p>
+              <p class="mt-2 text-[14px] text-graphite/65 max-w-xs mx-auto">Descartáveis e de uso único, em todos os atendimentos.</p>
+            </div>
+            <div class="tool-label" data-label>
+              <p class="font-serif text-3xl">Pinça de precisão</p>
+              <p class="mt-2 text-[14px] text-graphite/65 max-w-xs mx-auto">Para acabamentos finos, com a mesma precisão de sempre.</p>
+            </div>
+            <div class="tool-label" data-label>
+              <p class="font-serif text-3xl">Espátula de aplicação</p>
+              <p class="mt-2 text-[14px] text-graphite/65 max-w-xs mx-auto">Aplicação uniforme de máscaras e cosméticos, sem contaminar o produto.</p>
+            </div>
+          </div>
+
+          <div class="tool-controls mt-4 flex items-center gap-5">
+            <button id="toolPrev" aria-label="Ferramenta anterior" class="w-11 h-11 rounded-full glass grid place-items-center text-xl">‹</button>
+            <div class="tool-dots flex items-center gap-2">
+              <span class="dot on" data-go="0"></span>
+              <span class="dot" data-go="1"></span>
+              <span class="dot" data-go="2"></span>
+              <span class="dot" data-go="3"></span>
+            </div>
+            <button id="toolNext" aria-label="Próxima ferramenta" class="w-11 h-11 rounded-full glass grid place-items-center text-xl">›</button>
+          </div>
+
+          <p class="mt-5 text-[10px] tracking-[0.3em] uppercase text-graphite/50">Arraste para girar</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FILOSOFIA ================= -->
+    <section id="filosofia" class="relative py-28 md:py-40">
+      <div class="mx-auto max-w-7xl px-5 md:px-10 grid md:grid-cols-12 gap-14 items-center">
+        <div class="md:col-span-5 relative" data-speed="-0.05">
+          <div class="reveal img-slot aspect-[4/5] rounded-[32px] relative overflow-hidden noise">
+            <img src="foto lari.jpg" alt="Larrisa Cruz, esteticista" class="absolute inset-0 w-full h-full object-cover">
+          </div>
+          <div class="glass absolute -bottom-8 -right-4 md:-right-10 rounded-2xl px-6 py-5 reveal d2">
+            <p class="font-serif text-lg italic">“Técnica antes de tendência.”</p>
+          </div>
+        </div>
+
+        <div class="md:col-span-6 md:col-start-7">
+          <p class="reveal text-[11px] tracking-[0.35em] uppercase text-champagne mb-5">Filosofia & autoridade</p>
+          <h2 class="reveal d1 font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.08] font-medium">
+            <em class="font-normal">Larrisa Cruz</em><br />Esteticista.
+          </h2>
+          <p class="reveal d2 mt-8 text-[15px] leading-relaxed text-graphite/70 max-w-xl">
+            Formação em estética e prática focada em resultados graduais, seguros e naturais. Acredito em planejamento, em produtos de qualidade e em uma relação de confiança que dura anos, não sessões.
+          </p>
+
+          <div class="reveal d3 mt-14 grid grid-cols-3 gap-6 border-t hairline pt-10">
+            <div>
+              <p class="font-serif text-5xl md:text-6xl"><span data-count="12">0</span><span class="text-champagne">+</span></p>
+              <p class="mt-2 text-[11px] tracking-[0.2em] uppercase text-graphite/55">Anos de prática</p>
+            </div>
+            <div>
+              <p class="font-serif text-5xl md:text-6xl"><span data-count="3200">0</span><span class="text-champagne">+</span></p>
+              <p class="mt-2 text-[11px] tracking-[0.2em] uppercase text-graphite/55">Clientes atendidas</p>
+            </div>
+            <div>
+              <p class="font-serif text-5xl md:text-6xl"><span data-count="8">0</span></p>
+              <p class="mt-2 text-[11px] tracking-[0.2em] uppercase text-graphite/55">Certificações</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROTOCOLOS ================= -->
+    <section id="protocolos" class="relative py-28 md:py-36 bg-linen/60">
+      <div class="mx-auto max-w-7xl px-5 md:px-10">
+        <div class="reveal flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-14">
+          <div>
+            <p class="text-[11px] tracking-[0.35em] uppercase text-champagne mb-5">Protocolos em destaque</p>
+            <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.05]">Tratamentos com<br /><em class="font-normal">propósito definido.</em></h2>
+          </div>
+          <div id="filters" class="flex gap-2 overflow-x-auto no-scrollbar -mx-5 px-5 md:mx-0 md:px-0 pb-1">
+            <button class="chip rounded-full px-5 py-2.5 text-[12px] tracking-[0.15em] uppercase whitespace-nowrap" data-filter="all" aria-pressed="true">Todos</button>
+            <button class="chip rounded-full px-5 py-2.5 text-[12px] tracking-[0.15em] uppercase whitespace-nowrap" data-filter="rosto" aria-pressed="false">Rosto</button>
+            <button class="chip rounded-full px-5 py-2.5 text-[12px] tracking-[0.15em] uppercase whitespace-nowrap" data-filter="corpo" aria-pressed="false">Corpo</button>
+            <button class="chip rounded-full px-5 py-2.5 text-[12px] tracking-[0.15em] uppercase whitespace-nowrap" data-filter="renovacao" aria-pressed="false">Renovação</button>
+          </div>
+        </div>
+
+        <div id="protoGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <article class="proto-card reveal glass rounded-[28px] p-8 cursor-pointer" data-cat="rosto">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] tracking-[0.2em] uppercase text-champagne">Rosto · 60 min</span>
+              <span class="plus text-3xl font-light leading-none">+</span>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Limpeza de pele</h3>
+            <p class="mt-3 text-[14px] text-graphite/65 leading-relaxed">Extração com cureta, esfoliação suave e máscara calmante para equilíbrio da oleosidade.</p>
+            <div class="details">
+              <div class="pt-6 mt-6 border-t hairline text-[14px] leading-relaxed text-graphite/75 space-y-3">
+                <p><strong class="font-medium">Como funciona:</strong> higienização, preparo da pele, extração e finalização com máscara calmante.</p>
+                <p><strong class="font-medium">Indicado para:</strong> pele oleosa, poros dilatados e aparência opaca.</p>
+                <p><strong class="font-medium">Frequência sugerida:</strong> a cada 30 a 45 dias.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="proto-card reveal d1 glass rounded-[28px] p-8 cursor-pointer" data-cat="rosto renovacao">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] tracking-[0.2em] uppercase text-champagne">Rosto · 45 min</span>
+              <span class="plus text-3xl font-light leading-none">+</span>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Esfoliação facial</h3>
+            <p class="mt-3 text-[14px] text-graphite/65 leading-relaxed">Esfoliação com ativos suaves, escolhida conforme o tipo de pele, para uma aparência mais uniforme e luminosa.</p>
+            <div class="details">
+              <div class="pt-6 mt-6 border-t hairline text-[14px] leading-relaxed text-graphite/75 space-y-3">
+                <p><strong class="font-medium">Como funciona:</strong> remoção das células superficiais com produtos de uso profissional.</p>
+                <p><strong class="font-medium">Indicado para:</strong> textura irregular e pele opaca.</p>
+                <p><strong class="font-medium">Cuidados:</strong> uso de protetor solar nos dias seguintes.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="proto-card reveal d2 glass rounded-[28px] p-8 cursor-pointer" data-cat="rosto renovacao">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] tracking-[0.2em] uppercase text-champagne">Rosto · 75 min</span>
+              <span class="plus text-3xl font-light leading-none">+</span>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Massagem facial</h3>
+            <p class="mt-3 text-[14px] text-graphite/65 leading-relaxed">Massagem com manobras relaxantes e produtos de textura agradável, para bem-estar e sensação de pele descansada.</p>
+            <div class="details">
+              <div class="pt-6 mt-6 border-t hairline text-[14px] leading-relaxed text-graphite/75 space-y-3">
+                <p><strong class="font-medium">Como funciona:</strong> manobras no rosto, pescoço e colo, com ritmo lento.</p>
+                <p><strong class="font-medium">Indicado para:</strong> momentos de descanso e cuidado com a pele.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="proto-card reveal glass rounded-[28px] p-8 cursor-pointer" data-cat="corpo">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] tracking-[0.2em] uppercase text-champagne">Corpo · 50 min</span>
+              <span class="plus text-3xl font-light leading-none">+</span>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Drenagem linfática estética</h3>
+            <p class="mt-3 text-[14px] text-graphite/65 leading-relaxed">Massagem manual suave, com movimentos ritmados para sensação de leveza.</p>
+            <div class="details">
+              <div class="pt-6 mt-6 border-t hairline text-[14px] leading-relaxed text-graphite/75 space-y-3">
+                <p><strong class="font-medium">Como funciona:</strong> manobras suaves e ritmadas no sentido do fluxo linfático.</p>
+                <p><strong class="font-medium">Indicado para:</strong> sensação de peso e inchaço leve.</p>
+                <p><strong class="font-medium">Atenção:</strong> não indicado em pós-operatório sem liberação médica.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="proto-card reveal d1 glass rounded-[28px] p-8 cursor-pointer" data-cat="corpo">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] tracking-[0.2em] uppercase text-champagne">Corpo · 60 min</span>
+              <span class="plus text-3xl font-light leading-none">+</span>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Massagem modeladora</h3>
+            <p class="mt-3 text-[14px] text-graphite/65 leading-relaxed">Massagem com produtos específicos e manobras firmes para uma sensação de pele mais lisa e macia.</p>
+            <div class="details">
+              <div class="pt-6 mt-6 border-t hairline text-[14px] leading-relaxed text-graphite/75 space-y-3">
+                <p><strong class="font-medium">Como funciona:</strong> manobras no corpo com produto de textura específica.</p>
+                <p><strong class="font-medium">Resultado:</strong> varia de pessoa para pessoa, com acompanhamento de rotina.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="proto-card reveal d2 glass rounded-[28px] p-8 cursor-pointer" data-cat="renovacao">
+            <div class="flex justify-between items-start">
+              <span class="text-[11px] tracking-[0.2em] uppercase text-champagne">Renovação · 40 min</span>
+              <span class="plus text-3xl font-light leading-none">+</span>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Máscara iluminadora</h3>
+            <p class="mt-3 text-[14px] text-graphite/65 leading-relaxed">Máscara com ativos antioxidantes para uma aparência mais luminosa e uniforme.</p>
+            <div class="details">
+              <div class="pt-6 mt-6 border-t hairline text-[14px] leading-relaxed text-graphite/75 space-y-3">
+                <p><strong class="font-medium">Como funciona:</strong> aplicação com espátula e remoção após o tempo indicado.</p>
+                <p><strong class="font-medium">Frequência sugerida:</strong> mensal, em conjunto com os cuidados em casa.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRODUTOS ================= -->
+    <section id="produtos" class="relative py-28 md:py-40 overflow-hidden">
+      <div class="absolute left-1/2 top-1/3 -translate-x-1/2 w-[70vw] h-[70vw] rounded-full bg-champagne/10 blur-3xl pointer-events-none"></div>
+      <div class="relative mx-auto max-w-7xl px-5 md:px-10">
+        <div class="reveal text-center max-w-2xl mx-auto mb-16">
+          <p class="text-[11px] tracking-[0.35em] uppercase text-champagne mb-5">Cuidados em casa</p>
+          <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.05]">Ferramentas para<br /><em class="font-normal">a rotina diária.</em></h2>
+          <p class="mt-6 text-[15px] text-graphite/65">Passe o cursor ou toque nos pontos para conhecer cada item.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Item 1 -->
+          <article class="product-card reveal glass rounded-[32px] p-8 flex flex-col items-center text-center">
+            <div class="relative h-[300px] w-full flex items-center justify-center" style="perspective: 900px">
+              <div class="prod-bottle relative w-[120px] h-[200px] flex items-center justify-center">
+                <svg viewBox="0 0 160 200" fill="none" class="w-[120px] h-[180px]" aria-hidden="true">
+                  <rect x="73" y="66" width="14" height="112" rx="7" fill="#C9A96E"/>
+                  <ellipse cx="80" cy="34" rx="16" ry="22" stroke="#1C1C1E" stroke-width="5"/>
+                </svg>
+                <div class="hotspot" style="left:-14px; top:30%"><span class="tip">Bordas arredondadas que deslizam sem agredir a pele.</span></div>
+                <div class="hotspot" style="right:-14px; top:62%"><span class="tip">Usada na extração, sempre com higienização prévia.</span></div>
+              </div>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Cureta inox</h3>
+            <p class="mt-2 text-[11px] tracking-[0.2em] uppercase text-champagne">Uso profissional e doméstico</p>
+            <p class="mt-4 text-[14px] text-graphite/65">Para apoiar a rotina de cuidados, com higiene e orientação de uso.</p>
+            <a href="https://wa.me/5517991302572" data-wa="Olá! Gostaria de saber mais sobre a cureta inox." class="wa-link btn-ghost rounded-full px-6 py-3 mt-8 text-[11px] tracking-[0.18em] uppercase">Falar sobre o item</a>
+          </article>
+
+          <!-- Item 2 -->
+          <article class="product-card reveal d1 glass rounded-[32px] p-8 flex flex-col items-center text-center">
+            <div class="relative h-[300px] w-full flex items-center justify-center" style="perspective: 900px">
+              <div class="prod-bottle relative w-[120px] h-[200px] flex items-center justify-center">
+                <svg viewBox="0 0 160 200" fill="none" class="w-[120px] h-[180px]" aria-hidden="true">
+                  <rect x="46" y="98" width="68" height="70" rx="22" fill="#E8EEF0" stroke="#1C1C1E" stroke-width="2"/>
+                  <rect x="44" y="158" width="72" height="14" rx="4" fill="#1C1C1E"/>
+                </svg>
+                <div class="hotspot" style="left:-14px; top:34%"><span class="tip">Descartáveis, de uso único, para mais segurança na rotina.</span></div>
+                <div class="hotspot" style="right:-14px; top:66%"><span class="tip">Tamanho ajustado para diferentes mãos.</span></div>
+              </div>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Luvas de procedimento</h3>
+            <p class="mt-2 text-[11px] tracking-[0.2em] uppercase text-champagne">Pacote com 50 unidades</p>
+            <p class="mt-4 text-[14px] text-graphite/65">Uso único, para higiene em cuidados em casa e nos atendimentos.</p>
+            <a href="https://wa.me/5517991302572" data-wa="Olá! Gostaria de saber mais sobre as luvas de procedimento." class="wa-link btn-ghost rounded-full px-6 py-3 mt-8 text-[11px] tracking-[0.18em] uppercase">Falar sobre o item</a>
+          </article>
+
+          <!-- Item 3 -->
+          <article class="product-card reveal d2 glass rounded-[32px] p-8 flex flex-col items-center text-center">
+            <div class="relative h-[300px] w-full flex items-center justify-center" style="perspective: 900px">
+              <div class="prod-bottle relative w-[120px] h-[200px] flex items-center justify-center">
+                <svg viewBox="0 0 160 200" fill="none" class="w-[120px] h-[180px]" aria-hidden="true">
+                  <rect x="73" y="92" width="14" height="96" rx="7" fill="#1C1C1E"/>
+                  <path d="M80 22 C 56 22, 52 64, 80 94 C 108 64, 104 22, 80 22 Z" fill="#E6CFA0" stroke="#1C1C1E" stroke-width="2"/>
+                </svg>
+                <div class="hotspot" style="left:-14px; top:36%"><span class="tip">Ponta flexível para aplicar máscaras sem desperdício.</span></div>
+                <div class="hotspot" style="right:-14px; top:64%"><span class="tip">Fácil de higienizar após cada uso.</span></div>
+              </div>
+            </div>
+            <h3 class="font-serif text-3xl mt-6">Espátula de aplicação</h3>
+            <p class="mt-2 text-[11px] tracking-[0.2em] uppercase text-champagne">Inox e silicone</p>
+            <p class="mt-4 text-[14px] text-graphite/65">Para aplicar máscaras e cosméticos de forma uniforme.</p>
+            <a href="https://wa.me/5517991302572" data-wa="Olá! Gostaria de saber mais sobre a espátula de aplicação." class="wa-link btn-ghost rounded-full px-6 py-3 mt-8 text-[11px] tracking-[0.18em] uppercase">Falar sobre o item</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RESULTADOS ================= -->
+    <section id="resultados" class="relative py-28 md:py-36 bg-linen/60">
+      <div class="mx-auto max-w-7xl px-5 md:px-10 grid lg:grid-cols-12 gap-14 items-center">
+        <div class="lg:col-span-5">
+          <p class="reveal text-[11px] tracking-[0.35em] uppercase text-champagne mb-5">Resultados reais</p>
+          <h2 class="reveal d1 font-serif text-4xl sm:text-5xl font-medium leading-[1.08]">Evolução gradual,<br /><em class="font-normal">sem filtros.</em></h2>
+          <p class="reveal d2 mt-6 text-[15px] leading-relaxed text-graphite/65 max-w-md">Fotos feitas com a mesma luz e ângulo, após 8 semanas de protocolo. Arraste o controle para comparar.</p>
+          <p class="reveal d3 mt-4 text-[12px] text-graphite/50">Resultados individuais podem variar.</p>
+        </div>
+
+      <div class="lg:col-span-7 reveal d2">
+  <div id="ba" class="ba aspect-[4/5] md:aspect-[5/4] rounded-[28px] overflow-hidden" role="slider" tabindex="0" aria-label="Comparar antes e depois" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+
+    <!-- Camada "Antes" (fica à esquerda) -->
+    <div class="layer flex items-end p-6">
+      <img src="antes.jpg" alt="Pele antes do protocolo" class="absolute inset-0 w-full h-full object-cover" draggable="false">
+      <span class="relative text-[11px] tracking-[0.25em] uppercase text-graphite/60 bg-white/40 backdrop-blur px-3 py-1.5 rounded-full">Antes</span>
+    </div>
+
+    <!-- Camada "Depois" (fica à direita) -->
+    <div class="layer after flex items-end justify-end p-6">
+      <img src="depois.jpg" alt="Pele depois de 8 semanas de protocolo" class="absolute inset-0 w-full h-full object-cover" draggable="false">
+      <span class="relative text-[11px] tracking-[0.25em] uppercase text-graphite/60 bg-white/40 backdrop-blur px-3 py-1.5 rounded-full">Depois</span>
+    </div>
+
+    <div class="handle"></div>
+    <div class="knob">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1C1C1E" stroke-width="1.6"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </div>
+</div>
+    </section>
+
+    <!-- ================= CONTATO ================= -->
+    <section id="contato" class="relative py-28 md:py-40">
+      <div class="mx-auto max-w-7xl px-5 md:px-10 grid lg:grid-cols-12 gap-14">
+        <div class="lg:col-span-5">
+          <p class="reveal text-[11px] tracking-[0.35em] uppercase text-champagne mb-5">Agendamento & localização</p>
+          <h2 class="reveal d1 font-serif text-4xl sm:text-5xl font-medium leading-[1.08]">Vamos conversar<br /><em class="font-normal">sobre a sua pele.</em></h2>
+          <p class="reveal d2 mt-6 text-[15px] text-graphite/65 leading-relaxed">A primeira conversa é uma avaliação sem compromisso, para entender sua pele e indicar o melhor caminho.</p>
+
+          <form id="bookingForm" class="reveal d3 mt-10 grid gap-4">
+            <input required name="nome" placeholder="Seu nome" class="field rounded-2xl px-5 py-4 text-[15px]" />
+            <input required name="telefone" type="tel" placeholder="WhatsApp com DDD" class="field rounded-2xl px-5 py-4 text-[15px]" />
+            <select name="procedimento" class="field rounded-2xl px-5 py-4 text-[15px] text-graphite/80">
+              <option value="">Procedimento de interesse</option>
+              <option>Limpeza de pele</option>
+              <option>Esfoliação facial</option>
+              <option>Massagem facial</option>
+              <option>Drenagem linfática estética</option>
+              <option>Massagem modeladora</option>
+              <option>Máscara iluminadora</option>
+              <option>Ainda não sei, quero avaliação</option>
+            </select>
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <button type="submit" class="btn-primary flex-1 rounded-full py-4 text-[12px] tracking-[0.18em] uppercase">Enviar pelo WhatsApp</button>
+            </div>
+          </form>
+
+          <div class="reveal d4 mt-10 text-[14px] text-graphite/70 space-y-2">
+            <p><span class="text-graphite/50 uppercase text-[11px] tracking-[0.2em]">Endereço</span><br/>Av. 35, 257 - Centro - Barretos/SP</p>
+            <p><span class="text-graphite/50 uppercase text-[11px] tracking-[0.2em]">Horário</span><br/>Seg a sex, 9h às 18h · Sáb, 9h às 13h</p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 reveal d2">
+          <div class="glass rounded-[32px] overflow-hidden p-2 h-full min-h-[420px]">
+            <iframe
+              title="Localização da clínica"
+              class="w-full h-full min-h-[420px] rounded-[26px]"
+              style="border:0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Av.+35,+257+-+Centro,+Barretos+-+SP,+14780-380&output=embed">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t hairline">
+    <div class="mx-auto max-w-7xl px-5 md:px-10 py-10 flex flex-col md:flex-row gap-6 md:items-center md:justify-between text-[12px] text-graphite/55">
+      <p class="font-serif text-lg tracking-[0.2em] uppercase text-graphite">Lari Cruz <span class="gold-text italic normal-case tracking-normal">Estetica</span></p>
+      <p>© <span id="year"></span> Lari Cruz. Todos os direitos reservados.</p>
+      <div class="flex gap-6 uppercase tracking-[0.18em]">
+        <a href="https://www.instagram.com/iam.larissacruz/" class="nav-link">Instagram</a>
+        <a href="https://wa.me/5517991302572" class="nav-link">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="#" data-wa="Olá! Gostaria de agendar uma consulta." class="wa-link fixed right-5 bottom-5 z-40 w-14 h-14 rounded-full glass grid place-items-center md:hidden" style="margin-bottom: env(safe-area-inset-bottom, 0px)" aria-label="Falar no WhatsApp">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#1C1C1E"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
