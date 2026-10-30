@@ -434,3 +434,13 @@ body {
     box-shadow: none;
   }
 }
+/* ---------- Celular: conteúdo sempre visível (não depende do JavaScript) ---------- */
+@media (max-width: 767px) {
+  .reveal,
+  .reveal.in,
+  .d1, .d2, .d3, .d4 {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
