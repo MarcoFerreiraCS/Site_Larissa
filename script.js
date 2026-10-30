@@ -1,7 +1,8 @@
 /* =========================================================
    CONFIGURAÇÃO
    ========================================================= */
-const WA_NUMBER = '+55 17 99130-2572'; // DDI + DDD + número, só dígitos
+// Pode deixar formatado: o código remove tudo que não for número
+const WA_NUMBER = '+55 17 99130-2572'.replace(/\D/g, '');
 const WA_DEFAULT = 'Olá! Gostaria de agendar uma consulta.';
 const waURL = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
@@ -15,13 +16,10 @@ document.querySelectorAll('.wa-link').forEach(el => {
   el.rel = 'noopener';
 });
 
-/* ---------- Navbar com fundo ao rolar ---------- */
+/* ---------- Navbar com fundo sólido ao rolar ---------- */
 const navbar = document.getElementById('navbar');
 const onScroll = () => {
-  const scrolled = window.scrollY > 40;
-  navbar.classList.toggle('bg-sand/70', scrolled);
-  navbar.classList.toggle('backdrop-blur-xl', scrolled);
-  navbar.classList.toggle('shadow-[0_10px_40px_-20px_rgba(28,28,30,.25)]', scrolled);
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
 };
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
