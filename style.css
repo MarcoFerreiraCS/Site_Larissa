@@ -387,15 +387,29 @@ body {
   visibility: visible;
   pointer-events: auto;
 }
-.hamburger span { transition: transform .4s, opacity .3s; }
-.hamburger.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
 
-/* ---------- Barra ao rolar ---------- */
-#navbar.scrolled {
-  background: rgb(var(--sand));
-  box-shadow: 0 10px 30px -18px rgba(0,0,0,.3);
+/* Ícone de hambúrguer: centralizado com posicionamento absoluto */
+.hamburger {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  padding: 0;
+  border: 1px solid rgb(var(--graphite) / 0.15);
 }
+.hamburger .bar {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 1.5px;
+  background: rgb(var(--graphite));
+  border-radius: 2px;
+  transition: transform .4s cubic-bezier(.2,.7,.2,1), opacity .3s;
+}
+.hamburger .b1 { transform: translate(-50%, calc(-50% - 4px)); }
+.hamburger .b2 { transform: translate(-50%, calc(-50% + 4px)); }
+.hamburger.open .b1 { transform: translate(-50%, -50%) rotate(45deg); }
+.hamburger.open .b2 { transform: translate(-50%, -50%) rotate(-45deg); }
 
 /* ---------- Utilidades ---------- */
 .img-slot { background: linear-gradient(160deg, rgb(var(--img-fallback)), rgb(var(--img-fallback) / .7)); }
