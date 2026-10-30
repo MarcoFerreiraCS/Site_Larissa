@@ -1,5 +1,5 @@
 /* =========================================================
-   TEMAS (dia e noite) — as cores vêm destas variáveis
+   TEMAS (dia e noite): as cores vêm destas variáveis
    ========================================================= */
 :root {
   --sand: 243 238 230;
@@ -65,7 +65,7 @@ body {
 }
 .hairline { border-color: rgb(var(--graphite) / 0.12); }
 
-/* ---------- Reveal ---------- */
+/* ---------- Revelar ao rolar ---------- */
 .reveal {
   opacity: 0;
   transform: translateY(36px);
@@ -376,10 +376,17 @@ body {
 .mobile-menu {
   transform: translateY(-8px);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  box-shadow: none;
   transition: all .5s cubic-bezier(.2,.7,.2,1);
 }
-.mobile-menu.open { transform: none; opacity: 1; pointer-events: auto; }
+.mobile-menu.open {
+  transform: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 .hamburger span { transition: transform .4s, opacity .3s; }
 .hamburger.open span:nth-child(1) { transform: translateY(4px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); }
@@ -419,28 +426,22 @@ body {
   .reveal { opacity: 1; transform: none; }
 }
 
-/* ---------- Correção: menu mobile invisível de verdade ---------- */
-.mobile-menu {
-  visibility: hidden;
-  box-shadow: none !important;
-}
-.mobile-menu.open {
-  visibility: visible;
-}
-
-/* ---------- Celular: sombras pesadas removidas ---------- */
+/* =========================================================
+   CELULAR: ajustes finais
+   ========================================================= */
 @media (max-width: 767px) {
-  .glass {
-    box-shadow: none;
-  }
-}
-/* ---------- Celular: conteúdo sempre visível (não depende do JavaScript) ---------- */
-@media (max-width: 767px) {
+  /* Conteúdo sempre visível, sem depender do JavaScript */
   .reveal,
   .reveal.in,
   .d1, .d2, .d3, .d4 {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  /* Sem sombras pesadas nos cartões */
+  .glass,
+  .tool-card {
+    box-shadow: none;
   }
 }
