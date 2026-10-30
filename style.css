@@ -377,3 +377,39 @@ input, select, textarea { font-family: inherit; }
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ---------- Ajustes para celular: sem película ---------- */
+@media (max-width: 767px) {
+  /* Remove o desfoque de fundo, que causa a névoa no Samsung Internet */
+  .glass,
+  .tool-card,
+  .ba .knob,
+  .ba .layer span {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Cartões com fundo sólido e opaco */
+  .glass {
+    background: #FBF8F2 !important;
+  }
+  .tool-card {
+    background: #FBF8F2 !important;
+  }
+  .ba .layer span {
+    background: #FBF8F2 !important;
+  }
+
+  /* Remove os efeitos que criam névoa sobre a tela */
+  .noise::after,
+  .glow-halo,
+  .cursor-glow,
+  .cursor-dot {
+    display: none !important;
+  }
+
+  /* Evita que o carrossel 3D fique flutuando com efeito de camada */
+  .tool-stage {
+    animation: none;
+  }
+}
