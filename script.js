@@ -1,26 +1,32 @@
 /* =========================================================
    CONFIGURAÇÃO
    ========================================================= */
-// Pode deixar formatado: o código remove tudo que não for número
-const WA_NUMBER = '+55 17 99130-2572'.replace(/\D/g, '');
+const WA_NUMBER = '5517991302572'; // DDI + DDD + número, só dígitos
 const WA_DEFAULT = 'Olá! Gostaria de agendar uma consulta.';
 const waURL = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
 /* ---------- Ano no rodapé ---------- */
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ---------- Links de WhatsApp com mensagem pré-preenchida ---------- */
+/* ---------- Links de WhatsApp ---------- */
 document.querySelectorAll('.wa-link').forEach(el => {
   el.href = waURL(el.dataset.wa || WA_DEFAULT);
   el.target = '_blank';
   el.rel = 'noopener';
 });
 
-/* ---------- Navbar com fundo sólido ao rolar ---------- */
+/* ---------- Tema dia / noite ---------- */
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  const atual = document.documentElement.getAttribute('data-theme');
+  const novo = atual === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', novo);
+  try { localStorage.setItem('tema', novo); } catch (e) {}
+});
+
+/* ---------- Navbar sólida ao rolar ---------- */
 const navbar = document.getElementById('navbar');
-const onScroll = () => {
-  navbar.classList.toggle('scrolled', window.scrollY > 40);
-};
+const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 40);
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
@@ -31,7 +37,7 @@ const toggleMenu = (force) => {
   const open = force ?? !mobileMenu.classList.contains('open');
   mobileMenu.classList.toggle('open', open);
   menuBtn.classList.toggle('open', open);
-  menuBtn.setAttribute('aria-expanded', open);
+  menuBtn.setAttribute('aria-expanded', String(open));
 };
 menuBtn.addEventListener('click', () => toggleMenu());
 document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
@@ -53,7 +59,7 @@ function animateCount(el) {
   requestAnimationFrame(step);
 }
 
-/* ---------- Scroll reveal ---------- */
+/* ---------- Revelar ao rolar ---------- */
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) {
@@ -65,7 +71,6 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// Contadores fora do reveal (caso o bloco já esteja visível)
 document.querySelectorAll('[data-count]').forEach(el => {
   const obs = new IntersectionObserver(([e]) => {
     if (e.isIntersecting) { animateCount(el); obs.disconnect(); }
@@ -73,23 +78,28 @@ document.querySelectorAll('[data-count]').forEach(el => {
   obs.observe(el);
 });
 
-/* ---------- Parallax leve ---------- */
+/* ---------- Parallax leve (só desktop) ---------- */
 const parallaxEls = [...document.querySelectorAll('[data-speed]')];
+const podeParallax = () => window.innerWidth >= 768 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let ticking = false;
 function parallax() {
-  const vh = window.innerHeight;
-  parallaxEls.forEach(el => {
-    const r = el.getBoundingClientRect();
-    if (r.bottom < -200 || r.top > vh + 200) return;
-    const center = r.top + r.height / 2 - vh / 2;
-    const speed = parseFloat(el.dataset.speed);
-    el.style.transform = `translate3d(0, ${(-center * speed).toFixed(1)}px, 0)`;
-  });
+  if (podeParallax()) {
+    const vh = window.innerHeight;
+    parallaxEls.forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > vh + 200) return;
+      const center = r.top + r.height / 2 - vh / 2;
+      el.style.transform = `translate3d(0, ${(-center * parseFloat(el.dataset.speed)).toFixed(1)}px, 0)`;
+    });
+  } else {
+    parallaxEls.forEach(el => { el.style.transform = ''; });
+  }
   ticking = false;
 }
 window.addEventListener('scroll', () => {
   if (!ticking) { requestAnimationFrame(parallax); ticking = true; }
 }, { passive: true });
+window.addEventListener('resize', parallax);
 parallax();
 
 /* ---------- Cursor glow e ponto (desktop) ---------- */
@@ -162,9 +172,7 @@ if (ring) {
     stopAuto();
     timer = setInterval(() => go(idx + 1), 4500);
   }
-  function stopAuto() {
-    clearInterval(timer);
-  }
+  function stopAuto() { clearInterval(timer); }
 
   prevBtn.addEventListener('click', () => { go(idx - 1); startAuto(); });
   nextBtn.addEventListener('click', () => { go(idx + 1); startAuto(); });
@@ -178,13 +186,11 @@ if (ring) {
     ring.classList.add('dragging');
     stage.setPointerCapture(e.pointerId);
   });
-
   stage.addEventListener('pointermove', (e) => {
     if (!dragging) return;
     angle = startAngle + (e.clientX - startX) * 0.35;
     ring.style.transform = `rotateY(${angle}deg)`;
   });
-
   const endDrag = () => {
     if (!dragging) return;
     dragging = false;
@@ -225,7 +231,7 @@ cards.forEach(card => {
   card.setAttribute('aria-expanded', 'false');
   const toggle = () => {
     const open = card.classList.toggle('open');
-    card.setAttribute('aria-expanded', open);
+    card.setAttribute('aria-expanded', String(open));
   };
   card.addEventListener('click', toggle);
   card.addEventListener('keydown', (e) => {
@@ -233,7 +239,7 @@ cards.forEach(card => {
   });
 });
 
-/* ---------- Hotspots (toque no mobile) ---------- */
+/* ---------- Hotspots (toque no celular) ---------- */
 document.querySelectorAll('.hotspot').forEach(h => {
   h.setAttribute('tabindex', '0');
   h.setAttribute('role', 'button');
@@ -247,9 +253,9 @@ document.addEventListener('click', () => {
   document.querySelectorAll('.hotspot.active').forEach(x => x.classList.remove('active'));
 });
 
-/* ---------- Slider antes/depois (mouse, toque e teclado) ---------- */
+/* ---------- Slider antes e depois (mouse, toque e teclado) ---------- */
 const ba = document.getElementById('ba');
-let dragging = false;
+let baDragging = false;
 const setPos = (clientX) => {
   const r = ba.getBoundingClientRect();
   const pct = Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100));
@@ -257,13 +263,13 @@ const setPos = (clientX) => {
   ba.setAttribute('aria-valuenow', Math.round(pct));
 };
 ba.addEventListener('pointerdown', (e) => {
-  dragging = true;
+  baDragging = true;
   ba.setPointerCapture(e.pointerId);
   setPos(e.clientX);
 });
-ba.addEventListener('pointermove', (e) => { if (dragging) setPos(e.clientX); });
-ba.addEventListener('pointerup', () => dragging = false);
-ba.addEventListener('pointercancel', () => dragging = false);
+ba.addEventListener('pointermove', (e) => { if (baDragging) setPos(e.clientX); });
+ba.addEventListener('pointerup', () => { baDragging = false; });
+ba.addEventListener('pointercancel', () => { baDragging = false; });
 ba.addEventListener('keydown', (e) => {
   const cur = parseFloat(getComputedStyle(ba).getPropertyValue('--pos')) || 50;
   if (e.key === 'ArrowLeft') ba.style.setProperty('--pos', Math.max(0, cur - 5) + '%');

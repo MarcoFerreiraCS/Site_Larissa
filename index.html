@@ -3,9 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="color-scheme" content="only light" />
-  <title>Lari Cruz, esteticista</title>
+  <meta name="color-scheme" content="light dark" />
+  <title>Lari Cruz Estetica · Esteticista em Barretos</title>
   <meta name="description" content="Protocolos de estética facial e corporal com técnica, higiene e atenção à sua pele." />
+
+  <!-- Aplica o tema salvo antes da página aparecer (evita piscar) -->
+  <script>
+    (function () {
+      var t = localStorage.getItem('tema') || 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -13,11 +21,11 @@
       theme: {
         extend: {
           colors: {
-            sand: '#F3EEE6',
-            linen: '#EAE3D6',
-            champagne: '#C9A96E',
-            graphite: '#1C1C1E',
-            ink: '#0E0E0F'
+            sand: 'rgb(var(--sand) / <alpha-value>)',
+            linen: 'rgb(var(--linen) / <alpha-value>)',
+            champagne: 'rgb(var(--champagne) / <alpha-value>)',
+            graphite: 'rgb(var(--graphite) / <alpha-value>)',
+            ink: 'rgb(var(--ink) / <alpha-value>)'
           },
           fontFamily: {
             serif: ['"Cormorant Garamond"', 'serif'],
@@ -25,7 +33,7 @@
           }
         }
       }
-    }
+    };
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -53,8 +61,12 @@
       </ul>
 
       <div class="flex items-center gap-3">
+        <button id="themeBtn" aria-label="Alternar entre modo dia e modo noturno" class="theme-btn w-11 h-11 rounded-full glass grid place-items-center text-[15px]">
+          <span class="icon-sun">☀</span>
+          <span class="icon-moon">☾</span>
+        </button>
         <a href="#" data-wa="Olá! Gostaria de agendar uma consulta." class="wa-link btn-primary hidden sm:inline-flex text-[12px] tracking-[0.18em] uppercase rounded-full px-6 py-3">Agendar consulta</a>
-        <button id="menuBtn" aria-label="Abrir menu" class="hamburger md:hidden relative w-11 h-11 rounded-full glass grid place-items-center" aria-expanded="false">
+        <button id="menuBtn" aria-label="Abrir menu" aria-expanded="false" class="hamburger md:hidden relative w-11 h-11 rounded-full glass grid place-items-center">
           <span class="absolute w-5 h-[1.5px] bg-graphite -translate-y-1"></span>
           <span class="absolute w-5 h-[1.5px] bg-graphite translate-y-1"></span>
         </button>
@@ -170,14 +182,14 @@
           </div>
 
           <div class="tool-controls mt-4 flex items-center gap-5">
-            <button id="toolPrev" aria-label="Ferramenta anterior" class="w-11 h-11 rounded-full glass grid place-items-center text-xl">‹</button>
+            <button id="toolPrev" aria-label="Ferramenta anterior" class="tool-arrow w-11 h-11 rounded-full glass grid place-items-center text-xl">‹</button>
             <div class="tool-dots flex items-center gap-2">
               <span class="dot on" data-go="0"></span>
               <span class="dot" data-go="1"></span>
               <span class="dot" data-go="2"></span>
               <span class="dot" data-go="3"></span>
             </div>
-            <button id="toolNext" aria-label="Próxima ferramenta" class="w-11 h-11 rounded-full glass grid place-items-center text-xl">›</button>
+            <button id="toolNext" aria-label="Próxima ferramenta" class="tool-arrow w-11 h-11 rounded-full glass grid place-items-center text-xl">›</button>
           </div>
 
           <p class="mt-5 text-[10px] tracking-[0.3em] uppercase text-graphite/50">Arraste para girar</p>
@@ -189,7 +201,7 @@
     <section id="filosofia" class="relative py-28 md:py-40">
       <div class="mx-auto max-w-7xl px-5 md:px-10 grid md:grid-cols-12 gap-14 items-center">
         <div class="md:col-span-5 relative" data-speed="-0.05">
-          <div class="reveal img-slot aspect-[4/5] rounded-[32px] relative overflow-hidden noise">
+          <div class="reveal img-slot aspect-[4/5] rounded-[32px] relative overflow-hidden">
             <img src="foto-lari.jpg" alt="Lari Cruz, esteticista" class="absolute inset-0 w-full h-full object-cover">
           </div>
           <div class="glass absolute -bottom-8 -right-4 md:-right-10 rounded-2xl px-6 py-5 reveal d2">
@@ -240,7 +252,7 @@
           </div>
         </div>
 
-        <div id="protoGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           <article class="proto-card reveal glass rounded-[28px] p-8 cursor-pointer" data-cat="rosto">
             <div class="flex justify-between items-start">
               <span class="text-[11px] tracking-[0.2em] uppercase text-champagne">Rosto · 60 min</span>
@@ -337,7 +349,7 @@
       </div>
     </section>
 
-    <!-- ================= PRODUTOS ================= -->
+    <!-- ================= HOME CARE ================= -->
     <section id="produtos" class="relative py-28 md:py-40 overflow-hidden">
       <div class="absolute left-1/2 top-1/3 -translate-x-1/2 w-[70vw] h-[70vw] rounded-full bg-champagne/10 blur-3xl pointer-events-none"></div>
       <div class="relative mx-auto max-w-7xl px-5 md:px-10">
@@ -418,16 +430,14 @@
         <div class="lg:col-span-7 reveal d2">
           <div id="ba" class="ba aspect-[4/5] md:aspect-[5/4] rounded-[28px] overflow-hidden" role="slider" tabindex="0" aria-label="Comparar antes e depois" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
 
-            <!-- Camada "Antes" (fica à esquerda) -->
             <div class="layer flex items-end p-6">
               <img src="antes.jpg" alt="Pele antes do protocolo" class="absolute inset-0 w-full h-full object-cover" draggable="false">
-              <span class="relative text-[11px] tracking-[0.25em] uppercase text-graphite/60 bg-white/40 backdrop-blur px-3 py-1.5 rounded-full">Antes</span>
+              <span class="label relative text-[11px] tracking-[0.25em] uppercase px-3 py-1.5 rounded-full">Antes</span>
             </div>
 
-            <!-- Camada "Depois" (fica à direita) -->
             <div class="layer after flex items-end justify-end p-6">
               <img src="depois.jpg" alt="Pele depois de 8 semanas de protocolo" class="absolute inset-0 w-full h-full object-cover" draggable="false">
-              <span class="relative text-[11px] tracking-[0.25em] uppercase text-graphite/60 bg-white/40 backdrop-blur px-3 py-1.5 rounded-full">Depois</span>
+              <span class="label relative text-[11px] tracking-[0.25em] uppercase px-3 py-1.5 rounded-full">Depois</span>
             </div>
 
             <div class="handle"></div>
@@ -460,9 +470,7 @@
               <option>Máscara iluminadora</option>
               <option>Ainda não sei, quero avaliação</option>
             </select>
-            <div class="flex flex-col sm:flex-row gap-3 pt-2">
-              <button type="submit" class="btn-primary flex-1 rounded-full py-4 text-[12px] tracking-[0.18em] uppercase">Enviar pelo WhatsApp</button>
-            </div>
+            <button type="submit" class="btn-primary rounded-full py-4 text-[12px] tracking-[0.18em] uppercase">Enviar pelo WhatsApp</button>
           </form>
 
           <div class="reveal d4 mt-10 text-[14px] text-graphite/70 space-y-2">
@@ -492,14 +500,14 @@
       <p class="font-serif text-lg tracking-[0.2em] uppercase text-graphite">Lari Cruz <span class="gold-text italic normal-case tracking-normal">Estetica</span></p>
       <p>© <span id="year"></span> Lari Cruz. Todos os direitos reservados.</p>
       <div class="flex gap-6 uppercase tracking-[0.18em]">
-        <a href="https://www.instagram.com/iam.larissacruz/" class="nav-link">Instagram</a>
-        <a href="https://wa.me/5517991302572" class="nav-link">WhatsApp</a>
+        <a href="https://www.instagram.com/iam.larissacruz/" target="_blank" rel="noopener" class="nav-link">Instagram</a>
+        <a href="#" data-wa="Olá! Gostaria de agendar uma consulta." class="wa-link nav-link">WhatsApp</a>
       </div>
     </div>
   </footer>
 
   <a href="#" data-wa="Olá! Gostaria de agendar uma consulta." class="wa-link fixed right-5 bottom-5 z-40 w-14 h-14 rounded-full glass grid place-items-center md:hidden" style="margin-bottom: env(safe-area-inset-bottom, 0px)" aria-label="Falar no WhatsApp">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="#1C1C1E"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="text-graphite"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2z"/></svg>
   </a>
 
   <script src="script.js"></script>
