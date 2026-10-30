@@ -59,24 +59,31 @@ function animateCount(el) {
   requestAnimationFrame(step);
 }
 
-/* ---------- Revelar ao rolar ---------- */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      e.target.querySelectorAll('[data-count]').forEach(animateCount);
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  /* ---------- Revelar ao rolar ---------- */
+const revealEls = document.querySelectorAll('.reveal');
 
-document.querySelectorAll('[data-count]').forEach(el => {
-  const obs = new IntersectionObserver(([e]) => {
-    if (e.isIntersecting) { animateCount(el); obs.disconnect(); }
-  }, { threshold: 0.6 });
-  obs.observe(el);
-});
+const showEl = (el) => {
+  el.classList.add('in');
+  el.querySelectorAll('[data-count]').forEach(animateCount);
+};
+
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        showEl(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
+  revealEls.forEach(el => io.observe(el));
+} else {
+  revealEls.forEach(showEl);
+}
+
+// Segurança: mostra tudo que ainda estiver oculto depois de 2,5 s
+// (o celular às vezes não dispara a detecção ao rolar rápido)
+setTimeout(() => revealEls.forEach(showEl), 2500);
 
 /* ---------- Parallax leve (só desktop) ---------- */
 const parallaxEls = [...document.querySelectorAll('[data-speed]')];

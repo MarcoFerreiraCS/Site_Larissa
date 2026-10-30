@@ -418,3 +418,19 @@ body {
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ---------- Correção: menu mobile invisível de verdade ---------- */
+.mobile-menu {
+  visibility: hidden;
+  box-shadow: none !important;
+}
+.mobile-menu.open {
+  visibility: visible;
+}
+
+/* ---------- Celular: sombras pesadas removidas ---------- */
+@media (max-width: 767px) {
+  .glass {
+    box-shadow: none;
+  }
+}
